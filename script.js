@@ -7,9 +7,9 @@ let currentUser = localStorage.getItem('username') || '';
 let currentUserEmail = localStorage.getItem('user_email') || ADMIN_EMAIL;
 let currentForumId = null;
 let selectedImageBase64 = null;
-let currentEnglishLevel = 'A1';
+let currentEnglishLevel = 'B1'; // Nivel predeterminado actualizado a B1
 
-// ESTADO DEL CHAT IA (SUPERNOVA IA)
+// ESTADO DEL CHAT IA
 let currentAIMode = 'conversational';
 let chatAttachmentBase64 = null;
 let chatAttachmentName = null;
@@ -28,13 +28,13 @@ function escapeHTML(str) {
     });
 }
 
-// Generador de usuario por defecto sin revelar correo
+// Generador de usuario por defecto
 function generateDefaultUsername() {
     const randomId = Math.floor(1000 + Math.random() * 9000);
     return `Usuario_${randomId}`;
 }
 
-// Utilidad para guardar de forma segura en localStorage
+// Guardar de forma segura en localStorage
 function safeSaveForums() {
     try {
         localStorage.setItem('nexus_forums', JSON.stringify(forums));
@@ -198,132 +198,6 @@ function saveUsername(val) {
 
 function isUserAdmin(email, name) {
     return (email === ADMIN_EMAIL || name === 'AdminSuperNova' || name === 'Admin');
-}
-
-// --- GESTIÓN DE ASISTENTE DE IA (SUPERNOVA IA REDISEÑADO) ---
-function changeAIMode(mode) {
-    currentAIMode = mode;
-    const chatTab = document.getElementById('tab-ia-chat');
-    const codeBtn = document.getElementById('toggle-code-btn');
-    const codePanel = document.getElementById('code-input-panel');
-
-    if (chatTab) {
-        chatTab.className = `tab-content active mode-${mode}`;
-    }
-
-    if (mode === 'code') {
-        if (codeBtn) codeBtn.style.display = 'inline-block';
-    } else {
-        if (codeBtn) codeBtn.style.display = 'none';
-        toggleCodePanel(false);
-    }
-}
-
-function toggleCodePanel(show) {
-    const codePanel = document.getElementById('code-input-panel');
-    if (!codePanel) return;
-
-    if (typeof show === 'boolean') {
-        codePanel.style.display = show ? 'block' : 'none';
-    } else {
-        codePanel.style.display = (codePanel.style.display === 'none' || !codePanel.style.display) ? 'block' : 'none';
-    }
-}
-
-function handleChatFileSelect(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    if (file.size > 5 * 1024 * 1024) {
-        alert('El archivo excede el tamaño máximo permitido (5MB).');
-        event.target.value = '';
-        return;
-    }
-
-    chatAttachmentName = file.name;
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        chatAttachmentBase64 = e.target.result;
-        const previewBar = document.getElementById('chat-file-preview');
-        const fileNameLabel = document.getElementById('chat-file-name');
-        
-        if (fileNameLabel) fileNameLabel.innerText = chatAttachmentName;
-        if (previewBar) previewBar.style.display = 'flex';
-    };
-    reader.readAsDataURL(file);
-}
-
-function removeChatAttachment() {
-    chatAttachmentBase64 = null;
-    chatAttachmentName = null;
-    const fileInput = document.getElementById('chat-file-input');
-    const previewBar = document.getElementById('chat-file-preview');
-
-    if (fileInput) fileInput.value = '';
-    if (previewBar) previewBar.style.display = 'none';
-}
-
-function handleChatKeyPress(event) {
-    if (event.key === 'Enter') {
-        sendChatMessage();
-    }
-}
-
-function sendChatMessage() {
-    const userInput = document.getElementById('chat-user-input');
-    const codeInput = document.getElementById('chat-code-input');
-    
-    const messageText = userInput ? userInput.value.trim() : '';
-    const codeText = (currentAIMode === 'code' && codeInput) ? codeInput.value.trim() : '';
-
-    if (!messageText && !codeText && !chatAttachmentBase64) return;
-
-    const chatBox = document.getElementById('chat-messages');
-    if (!chatBox) return;
-
-    // Renderizar Mensaje del Usuario
-    const userMsgElem = document.createElement('div');
-    userMsgElem.className = 'user-message';
-
-    let contentHTML = `<strong>${escapeHTML(currentUser)}:</strong> ${escapeHTML(messageText)}`;
-    
-    if (codeText) {
-        contentHTML += `<pre class="code-block-preview"><code>${escapeHTML(codeText)}</code></pre>`;
-    }
-
-    if (chatAttachmentBase64) {
-        contentHTML += `<div class="attachment-tag">📎 Archivo: ${escapeHTML(chatAttachmentName)}</div>`;
-    }
-
-    userMsgElem.innerHTML = contentHTML;
-    chatBox.appendChild(userMsgElem);
-
-    // Limpieza de campos
-    if (userInput) userInput.value = '';
-    if (codeInput) codeInput.value = '';
-    removeChatAttachment();
-    toggleCodePanel(false);
-
-    chatBox.scrollTop = chatBox.scrollHeight;
-
-    // Simulación de respuesta de la IA
-    setTimeout(() => {
-        const aiMsgElem = document.createElement('div');
-        aiMsgElem.className = 'ai-message';
-
-        let responseText = '';
-        if (currentAIMode === 'conversational') {
-            responseText = `🤖 <strong>SuperNova IA:</strong> He recibido tu consulta. Como modelo conversacional, estoy aquí para resolver tus dudas de estudio de manera clara.`;
-        } else if (currentAIMode === 'code') {
-            responseText = `⚡ <strong>SuperNova IA (Matrix Code):</strong> Código analizado con éxito. No se detectaron errores sintácticos críticos en el bloque proporcionado. ¡Buen trabajo estructurando tu programa!`;
-        } else if (currentAIMode === 'image') {
-            responseText = `🎨 <strong>SuperNova IA (Image Gen):</strong> Solicitud de imagen procesada. Tu descripción ha sido enviada al pipeline de generación.`;
-        }
-
-        aiMsgElem.innerHTML = responseText;
-        chatBox.appendChild(aiMsgElem);
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }, 800);
 }
 
 // --- GESTIÓN DE FOROS ---
@@ -568,8 +442,8 @@ function handleSubjectChange(subject) {
     if (subject === 'english') {
         if (comingSoon) comingSoon.style.display = 'none';
         if (englishMod) englishMod.style.display = 'block';
-        selectEnglishLevel('A1');
-    } else if (subject !== '') {
+        selectEnglishLevel('B1'); // Habilitado el nivel B1 por defecto
+    } else if (['biology', 'physics', 'chemistry', 'math'].includes(subject)) {
         if (englishMod) englishMod.style.display = 'none';
         if (comingSoon) comingSoon.style.display = 'block';
     } else {
@@ -583,7 +457,6 @@ function selectEnglishLevel(level) {
     
     const buttons = document.querySelectorAll('.btn-level');
     buttons.forEach(btn => {
-        // Comparación flexible por texto o por atributo data-level
         const btnLevel = btn.getAttribute('data-level') || btn.innerText.trim();
         if (btnLevel.includes(level)) {
             btn.classList.add('active');
@@ -604,7 +477,6 @@ function renderEnglishTopics(level) {
     if (!grid) return;
     grid.innerHTML = '';
 
-    // Soporte para los niveles A1, A2, B1, B2, C1, C2
     const lessons = (typeof englishLessonsData !== 'undefined' && englishLessonsData[level]) ? englishLessonsData[level] : [];
 
     if (lessons.length === 0) {
