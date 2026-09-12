@@ -1,5 +1,5 @@
 // CONFIGURACIÓN DE GOOGLE OAUTH Y CORREO ADMINISTRADOR
-const GOOGLE_CLIENT_ID = '695556528337-adspiogj5isu692v7l86tr6th2kc5nhe.apps.googleusercontent.com';
+const GOOGLE_CLIENT_ID = '695556528337-katrqu8atnal1d2j9ud3t9jpjhajjhgb.apps.googleusercontent.com';
 var ADMIN_EMAIL = 'correadediego30@gmail.com';
 
 // ESTADO GLOBAL
