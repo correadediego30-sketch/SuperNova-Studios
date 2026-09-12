@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supernova Studios | Plataforma Educativa</title>
     <link rel="icon" type="image/png" href="favicon.png">
+    
+    <!-- Fuente Tipográfica Profesional Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="styles.css">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
@@ -54,12 +60,10 @@
             <select id="nav-dropdown" onchange="switchTab(this.value)">
                 <option value="tutorial">📖 Tutorial / Guía de uso</option>
                 <option value="learn">📚 Centro de aprendizaje</option>
-                <option value="forum">💬 Foros comunitarios</option>
-                <option value="ia-chat">🤖 Asistente IA</option>
-                <option value="games">🎮 Zona de juegos</option>
+                <option value="forum">💬 Foros</option>
+                <!-- Asistente IA, Juegos y Red Social ocultos temporalmente -->
                 <option value="about">✨ Conócenos</option>
-                <option value="store">🛒 Tienda</option>
-                <option value="social">👥 Red Social / Perfiles</option>
+                <option value="store">🛒 Marketplace</option>
                 <option value="profile">👤 Perfil</option>
             </select>
         </nav>
@@ -110,10 +114,13 @@
                 <select id="subject-dropdown" onchange="handleSubjectChange(this.value)">
                     <option value="">-- Selecciona una Materia --</option>
                     <option value="english">🇬🇧 Inglés</option>
-                    <option value="hr">👥 Recursos Humanos (Próximamente)</option>
+                    <option value="biology">🧬 Biología (Próximamente)</option>
+                    <option value="physics">⚛️ Física (Próximamente)</option>
+                    <option value="chemistry">🧪 Química (Próximamente)</option>
                     <option value="math">📐 Matemáticas (Próximamente)</option>
                     <option value="spanish">📝 Español (Próximamente)</option>
                     <option value="code">💻 Programación (Próximamente)</option>
+                    <option value="hr">👥 Recursos Humanos (Próximamente)</option>
                 </select>
             </div>
 
@@ -129,7 +136,7 @@
                 <div class="level-buttons-grid">
                     <button type="button" class="btn-level active" onclick="selectEnglishLevel('A1')">Nivel A1 (Principiante)</button>
                     <button type="button" class="btn-level" onclick="selectEnglishLevel('A2')">Nivel A2 (Básico)</button>
-                    <button type="button" class="btn-level disabled" disabled>Nivel B1 (Próximamente)</button>
+                    <button type="button" class="btn-level" onclick="selectEnglishLevel('B1')">Nivel B1 (Intermedio)</button>
                     <button type="button" class="btn-level disabled" disabled>Nivel B2 (Próximamente)</button>
                     <button type="button" class="btn-level disabled" disabled>Nivel C1 (Próximamente)</button>
                     <button type="button" class="btn-level disabled" disabled>Nivel C2 (Próximamente)</button>
@@ -154,7 +161,7 @@
 
         <!-- 3. Foros Comunitarios -->
         <section id="tab-forum" class="tab-content">
-            <h2>💬 Foros Comunitarios</h2>
+            <h2>💬 Foros</h2>
             <p class="subtitle">Intercambia conocimientos con otros estudiantes en salas temáticas.</p>
 
             <div class="forum-actions">
@@ -216,8 +223,8 @@
             </div>
         </section>
 
-        <!-- 4. Asistente IA (Supernova IA) -->
-        <section id="tab-ia-chat" class="tab-content mode-conversational">
+        <!-- 4. Asistente IA (Oculto en UI pero conservado en DOM para desarrollo) -->
+        <section id="tab-ia-chat" class="tab-content mode-conversational" style="display:none;">
             <div class="chat-header-bar">
                 <h2>🤖 Supernova IA</h2>
                 <div class="model-selector-group">
@@ -263,53 +270,34 @@
             </div>
         </section>
 
-        <!-- 5. Zona de Juegos -->
-        <section id="tab-games" class="tab-content">
+        <!-- 5. Zona de Juegos (Oculto en UI) -->
+        <section id="tab-games" class="tab-content" style="display:none;">
             <h2>🎮 Zona de Juegos</h2>
             <p class="subtitle">Completa desafíos para entrenar tus habilidades y ganar tokens adicionales.</p>
-
-            <div class="games-grid">
-                <div class="game-card">
-                    <div class="badge-soon">Próximamente</div>
-                    <div class="game-icon" aria-hidden="true">🧩</div>
-                    <h3>Vocabulario Relámpago</h3>
-                    <p>Relaciona palabras clave en inglés contra el reloj.</p>
-                    <button type="button" class="btn-secondary disabled" disabled>Bloqueado</button>
-                </div>
-
-                <div class="game-card">
-                    <div class="badge-soon">Próximamente</div>
-                    <div class="game-icon" aria-hidden="true">⚡</div>
-                    <h3>Duelo Gramatical</h3>
-                    <p>Identifica errores gramaticales en oraciones complejas.</p>
-                    <button type="button" class="btn-secondary disabled" disabled>Bloqueado</button>
-                </div>
-
-                <div class="game-card">
-                    <div class="badge-soon">Próximamente</div>
-                    <div class="game-icon" aria-hidden="true">🎯</div>
-                    <h3>Trivia de Conocimiento</h3>
-                    <p>Demuestra tu dominio en ciencias, idiomas y tecnología.</p>
-                    <button type="button" class="btn-secondary disabled" disabled>Bloqueado</button>
-                </div>
-            </div>
         </section>
 
         <!-- 6. Conócenos -->
         <section id="tab-about" class="tab-content">
             <div class="about-card">
                 <h2>✨ Conócenos</h2>
-                <p>
+                <p class="about-intro">
                     <strong>Supernova Studios</strong> es un ecosistema enfocado en el aprendizaje interactivo, combinando módulos teóricos estructurados, inteligencia artificial especializada, dinámicas de gamificación e interacción comunitaria.
                 </p>
 
                 <div class="about-mv-grid">
                     <div class="mv-card">
-                        <h3>🎯 Nuestra Misión</h3>
+                        <div class="mv-header">
+                            <span class="mv-icon">🎯</span>
+                            <h3>Nuestra Misión</h3>
+                        </div>
                         <p>Educar y brindar contenidos y herramientas de aprendizaje verídicas, accesibles y de alta calidad para capacitar a personas de todo el mundo mediante tecnología e interacción interactiva.</p>
                     </div>
+
                     <div class="mv-card">
-                        <h3>🚀 Nuestra Visión (2030)</h3>
+                        <div class="mv-header">
+                            <span class="mv-icon">🚀</span>
+                            <h3>Nuestra Visión (2030)</h3>
+                        </div>
                         <p>Ser reconocidos globalmente como una plataforma líder e innovadora en educación autodidacta y asistida por IA, transformando la manera en que las personas adquieren conocimientos prácticos.</p>
                     </div>
                 </div>
@@ -327,26 +315,12 @@
             </div>
         </section>
 
-        <!-- 7. Tienda -->
+        <!-- 7. Marketplace -->
         <section id="tab-store" class="tab-content">
-            <h2>🛒 Tienda de Recompensas</h2>
-            <p class="subtitle">Canjea tus tokens acumulados por ventajas exclusivas e insignias para tu perfil.</p>
+            <h2>🛒 Marketplace</h2>
+            <p class="subtitle">Canjea tus tokens acumulados por ventajas exclusivas para tu cuenta.</p>
 
             <div class="store-grid">
-                <div class="store-card">
-                    <div class="store-icon" aria-hidden="true">🎖️</div>
-                    <h3>Insignia "Fundador"</h3>
-                    <p>Otorga un distintivo especial de color único en tus mensajes de foros y te permite enviar emojis exclusivos.</p>
-                    <button type="button" class="btn-primary" onclick="buyItem('badge_founder', 2000)">Comprar (2,000 Tokens)</button>
-                </div>
-
-                <div class="store-card">
-                    <div class="store-icon" aria-hidden="true">🎨</div>
-                    <h3>Tema Personalizado IA</h3>
-                    <p>Desbloquea estilos visuales exclusivos para la interfaz del chat de IA.</p>
-                    <button type="button" class="btn-primary" onclick="buyItem('theme_custom', 1500)">Comprar (1,500 Tokens)</button>
-                </div>
-
                 <div class="store-card">
                     <div class="store-icon" aria-hidden="true">🛡️</div>
                     <h3>Protector de Racha</h3>
@@ -356,19 +330,10 @@
             </div>
         </section>
 
-        <!-- 8. Red Social / Perfiles -->
-        <section id="tab-social" class="tab-content">
+        <!-- 8. Red Social / Perfiles (Oculto en UI) -->
+        <section id="tab-social" class="tab-content" style="display:none;">
             <h2>👥 Red Social y Comunidad</h2>
-            <p class="subtitle">Explora los perfiles de la comunidad, sus calificaciones, estado e interacciones.</p>
-
-            <div class="social-search">
-                <label for="search-user-social" class="sr-only">Buscar usuario</label>
-                <input type="search" id="search-user-social" placeholder="Buscar usuario por nombre..." oninput="searchUsersSocial()">
-            </div>
-
-            <div id="social-profiles-grid" class="social-grid">
-                <!-- Se poblará dinámicamente con JavaScript -->
-            </div>
+            <p class="subtitle">Explora los perfiles de la comunidad.</p>
         </section>
 
         <!-- 9. Perfil e Inventario -->
@@ -377,34 +342,37 @@
             <p class="subtitle">Gestiona tus datos personales, revisa tus objetos equipados y tu historial de aportes.</p>
 
             <div class="profile-layout-grid">
-                <div class="config-card">
-                    <h3>Información del Usuario</h3>
+                <!-- Información personal -->
+                <div class="profile-card config-card">
+                    <h3>Configuración de Usuario</h3>
                     <div class="form-group">
                         <label for="username">Nombre de usuario (Público):</label>
                         <input type="text" id="username" placeholder="Tu apodo público..." onchange="saveUsername(this.value)">
                     </div>
 
                     <div class="form-group">
-                        <label for="user-email">Correo Electrónico (Privado - Solo visible para ti):</label>
+                        <label for="user-email">Correo Electrónico (Privado):</label>
                         <input type="email" id="user-email" readonly class="input-readonly" placeholder="correo@dominio.com">
                     </div>
 
                     <div class="status-summary-box">
-                        <p><strong>Estado de Conexión:</strong> <span id="user-status-indicator" class="status-online">🟢 En línea</span></p>
-                        <p><strong>Puntaje de Aportes:</strong> <span id="user-rating-stars">⭐ 5.0 / 5.0</span></p>
-                    </div>
-
-                    <div class="badges-container">
-                        <h3>Insignias y Emblemas</h3>
-                        <div id="user-badges-list" class="badges-grid">
-                            <span class="badge-item">🌱 Novato</span>
-                        </div>
+                        <p><strong>Estado:</strong> <span id="user-status-indicator" class="status-online">🟢 En línea</span></p>
+                        <p><strong>Puntaje:</strong> <span id="user-rating-stars">⭐ 5.0 / 5.0</span></p>
                     </div>
                 </div>
 
-                <div class="inventory-card">
+                <!-- Insignias -->
+                <div class="profile-card badges-card">
+                    <h3>Insignias y Emblemas</h3>
+                    <div id="user-badges-list" class="badges-grid">
+                        <span class="badge-item">🌱 Novato</span>
+                    </div>
+                </div>
+
+                <!-- Inventario -->
+                <div class="profile-card inventory-card">
                     <h3>📦 Mi Inventario</h3>
-                    <p class="subtitle">Artículos y consumibles activos en tu cuenta:</p>
+                    <p class="subtitle">Artículos activos en tu cuenta:</p>
                     <div id="user-inventory-grid" class="inventory-grid">
                         <div class="inventory-item">
                             <span class="item-icon">🛡️</span>
@@ -427,9 +395,7 @@
     </main>
 
     <!-- Scripts de la Aplicación -->
-    <!-- Carga los contenidos educativos del módulo de Inglés -->
     <script src="english.js" defer></script>
-    <!-- Lógica principal de la aplicación -->
     <script src="script.js" defer></script>
 </body>
 </html>
