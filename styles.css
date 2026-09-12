@@ -1,26 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
 /* ==========================================================================
    1. VARIABLES DE TEMA Y RESET GLOBAL
    ========================================================================== */
 :root {
-  --bg-main: #0d1117;
-  --bg-surface: #161b22;
-  --bg-card: #21262d;
-  --border-color: #30363d;
+  --bg-main: #0b0f17;
+  --bg-surface: #121824;
+  --bg-card: #1a2232;
+  --bg-card-hover: #222b3e;
+  --border-color: #273142;
 
-  --text-primary: #f0f6fc;
-  --text-secondary: #8b949e;
-  --text-muted: #6e7681;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
 
-  --accent-blue: #2f81f7;
-  --accent-blue-hover: #388bfd;
-  --accent-green: #238636;
-  --accent-amber: #d29922;
-  --accent-gold: #ffd700;
-  --accent-red: #e63946;
-  --accent-red-dark: #9e1b24;
+  --accent-blue: #3b82f6;
+  --accent-blue-hover: #2563eb;
+  --accent-green: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-gold: #fbbf24;
+  --accent-red: #ef4444;
+  --accent-red-dark: #dc2626;
 
-  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-wiki: "Georgia", "Cambria", "Times New Roman", Times, serif;
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-wiki: 'Plus Jakarta Sans', serif;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
 }
 
 *,
@@ -36,7 +42,7 @@ body {
   background-color: var(--bg-main);
   color: var(--text-primary);
   min-height: 100vh;
-  line-height: 1.5;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -53,6 +59,11 @@ body {
   border: 0;
 }
 
+/* Ocultar elementos deshabilitados desde la configuración */
+.nav-hidden-option {
+  display: none !important;
+}
+
 /* ==========================================================================
    2. NAVEGACIÓN Y CABECERA (HEADER)
    ========================================================================== */
@@ -60,17 +71,17 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.8rem 2rem;
+  padding: 1rem 2.5rem;
   background-color: var(--bg-surface);
   border-bottom: 1px solid var(--border-color);
-  gap: 12px;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
 .logo {
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
   color: var(--text-primary);
 }
 
@@ -94,6 +105,7 @@ header {
   display: flex;
   align-items: center;
   gap: 6px;
+  font-weight: 600;
 }
 
 .stat-icon {
@@ -112,24 +124,26 @@ select#nav-dropdown {
   background: var(--bg-main);
   color: var(--text-primary);
   border: 1px solid var(--border-color);
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
   font-size: 0.875rem;
+  font-weight: 600;
   outline: none;
   cursor: pointer;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
   max-width: 100%;
 }
 
 select#nav-dropdown:focus {
   border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
 /* ==========================================================================
    3. CONTENEDOR PRINCIPAL Y PESTAÑAS
    ========================================================================== */
 main {
-  padding: 2rem;
+  padding: 2.5rem 2rem;
   max-width: 1100px;
   margin: 0 auto;
   width: 100%;
@@ -139,10 +153,11 @@ main {
   display: none;
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
-  padding: 1.75rem;
-  border-radius: 8px;
+  padding: 2rem;
+  border-radius: var(--radius-lg);
   word-wrap: break-word;
   overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 .tab-content.active {
@@ -150,15 +165,16 @@ main {
 }
 
 .tab-content h2 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  margin-bottom: 0.4rem;
 }
 
 .subtitle {
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   color: var(--text-secondary);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 /* ==========================================================================
@@ -177,8 +193,8 @@ main {
   background: var(--bg-main);
   border: 1px solid var(--border-color);
   color: var(--text-primary);
-  padding: 10px 12px;
-  border-radius: 6px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
   font-size: 0.875rem;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
@@ -187,7 +203,7 @@ main {
 .input-readonly {
   opacity: 0.7;
   cursor: not-allowed;
-  background: #111418 !important;
+  background: #090d14 !important;
 }
 
 .manual-auth-box input:focus,
@@ -198,17 +214,17 @@ main {
 .subject-selection select:focus,
 .social-search input:focus {
   border-color: var(--accent-blue);
-  box-shadow: 0 0 0 2px rgba(47, 129, 247, 0.2);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
 .btn-primary {
   background-color: var(--accent-blue);
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 8px 16px;
-  border-radius: 6px;
+  border: none;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
   transition: background-color 0.2s, transform 0.1s;
@@ -226,16 +242,17 @@ main {
   background-color: var(--bg-card);
   color: var(--text-primary);
   border: 1px solid var(--border-color);
-  padding: 8px 16px;
-  border-radius: 6px;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, border-color 0.2s;
 }
 
 .btn-secondary:hover:not(.disabled) {
-  background-color: #30363d;
+  background-color: var(--bg-card-hover);
+  border-color: var(--text-secondary);
 }
 
 .btn-secondary.disabled {
@@ -246,10 +263,11 @@ main {
 .btn-danger {
   background-color: var(--accent-red);
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 6px 12px;
-  border-radius: 6px;
+  border: none;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
   font-size: 0.8rem;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
 }
@@ -263,7 +281,7 @@ main {
   border: 1px solid var(--border-color);
   color: var(--text-primary);
   padding: 8px 12px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   font-size: 1.1rem;
   display: flex;
@@ -282,6 +300,7 @@ main {
   color: var(--accent-red);
   cursor: pointer;
   font-size: 0.8rem;
+  font-weight: 600;
   padding: 4px;
 }
 
@@ -293,9 +312,12 @@ main {
   display: flex;
   align-items: center;
   text-align: center;
-  margin: 1.25rem 0;
+  margin: 1.5rem 0;
   color: var(--text-muted);
   font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .divider::before,
@@ -306,7 +328,7 @@ main {
 }
 
 .divider span {
-  padding: 0 10px;
+  padding: 0 12px;
 }
 
 .manual-auth-box {
@@ -326,7 +348,7 @@ main {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(13, 17, 23, 0.95);
+  background: rgba(11, 15, 23, 0.9);
   backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
@@ -348,29 +370,29 @@ main {
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
   padding: 2.5rem;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   text-align: center;
   max-width: 420px;
   width: 100%;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
 }
 
 .brand-badge {
   display: inline-block;
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   color: var(--accent-blue);
-  background: rgba(47, 129, 247, 0.1);
-  padding: 4px 10px;
+  background: rgba(59, 130, 246, 0.1);
+  padding: 4px 12px;
   border-radius: 20px;
   margin-bottom: 1rem;
-  border: 1px solid rgba(47, 129, 247, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 .login-card h1 {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.6rem;
+  font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
@@ -378,32 +400,33 @@ main {
 .login-card p {
   font-size: 0.875rem;
   color: var(--text-secondary);
-  line-height: 1.4;
+  line-height: 1.5;
   margin-bottom: 1.5rem;
 }
 
 .modal-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
   width: 100%;
   max-width: 450px;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  gap: 1rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
 }
 
 .modal-cost {
   font-size: 0.8rem;
+  font-weight: 600;
   color: var(--accent-amber);
 }
 
 .modal-buttons {
   display: flex;
   justify-content: flex-end;
-  gap: 8px;
+  gap: 10px;
   margin-top: 0.5rem;
 }
 
@@ -411,19 +434,21 @@ main {
    6. TUTORIAL Y MONETIZACIÓN
    ========================================================================== */
 .banner-monetization {
-  background: rgba(230, 57, 70, 0.12);
-  border: 1px solid var(--accent-red);
-  color: #ff858d;
-  padding: 12px 16px;
-  border-radius: 6px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
   font-size: 0.88rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .table-responsive {
   width: 100%;
   overflow-x: auto;
   margin-top: 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
 }
 
 .streak-table {
@@ -434,21 +459,26 @@ main {
 }
 
 .streak-table th, .streak-table td {
-  padding: 10px 14px;
-  border: 1px solid var(--border-color);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .streak-table th {
   background: var(--bg-card);
   color: var(--text-primary);
+  font-weight: 700;
+}
+
+.streak-table tr:last-child td {
+  border-bottom: none;
 }
 
 .streak-table tr:nth-child(even) {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.015);
 }
 
 /* ==========================================================================
-   7. CENTRO DE APRENDIZAJE (ESTILO WIKIPEDIA / RECURSOS)
+   7. CENTRO DE APRENDIZAJE Y RECURSOS
    ========================================================================== */
 .subject-selection {
   max-width: 320px;
@@ -456,10 +486,10 @@ main {
 }
 
 .coming-soon-box {
-  background: rgba(210, 153, 34, 0.1);
-  border: 1px solid rgba(210, 153, 34, 0.3);
-  padding: 1rem;
-  border-radius: 6px;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
   color: var(--accent-amber);
   font-size: 0.9rem;
   margin-top: 1rem;
@@ -468,13 +498,13 @@ main {
 .section-divider {
   border: none;
   border-top: 1px solid var(--border-color);
-  margin: 1.5rem 0;
+  margin: 1.75rem 0;
 }
 
 .level-buttons-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 8px;
+  gap: 10px;
   margin-bottom: 1.5rem;
 }
 
@@ -482,9 +512,10 @@ main {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   color: var(--text-primary);
-  padding: 10px;
-  border-radius: 6px;
-  font-size: 0.85rem;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
   text-align: center;
@@ -492,6 +523,7 @@ main {
 
 .btn-level:hover:not(.disabled) {
   border-color: var(--accent-blue);
+  background: var(--bg-card-hover);
 }
 
 .btn-level.active {
@@ -507,40 +539,43 @@ main {
 }
 
 .topics-section h4 {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  font-weight: 700;
   margin-bottom: 1rem;
 }
 
 .topics-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
 }
 
 .topic-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  padding: 1.2rem;
-  border-radius: 8px;
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .topic-card:hover {
   border-color: var(--accent-blue);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .topic-card h5 {
-  font-size: 0.95rem;
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .topic-card p {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
-  line-height: 1.3;
+  line-height: 1.4;
 }
 
 .topic-loader {
@@ -550,8 +585,8 @@ main {
 }
 
 .spinner {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border: 3px solid var(--border-color);
   border-top-color: var(--accent-blue);
   border-radius: 50%;
@@ -563,76 +598,75 @@ main {
   to { transform: rotate(360deg); }
 }
 
-/* Lectura Tipo Wikipedia */
+/* Lectura Estilo Artículo */
 .topic-display-card {
   background: var(--bg-main);
   border: 1px solid var(--border-color);
-  padding: 2rem;
-  border-radius: 8px;
+  padding: 2.25rem;
+  border-radius: var(--radius-md);
   margin-top: 1rem;
-  font-family: var(--font-wiki);
 }
 
 .topic-display-card h3 {
-  font-size: 1.8rem;
-  font-family: var(--font-wiki);
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
   border-bottom: 1px solid var(--border-color);
-  padding-bottom: 0.5rem;
-  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
   color: var(--text-primary);
 }
 
 .topic-display-card p {
-  font-size: 1.05rem;
-  line-height: 1.75;
-  color: #e6edf3;
-  margin-bottom: 1.2rem;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #cbd5e1;
+  margin-bottom: 1.25rem;
 }
 
 .lesson-section {
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
-  border-left: 3px solid var(--accent-blue);
-  padding: 1.25rem;
-  border-radius: 4px;
-  margin-top: 1.5rem;
+  border-left: 4px solid var(--accent-blue);
+  padding: 1.5rem;
+  border-radius: var(--radius-sm);
+  margin-top: 1.75rem;
 }
 
 .lesson-section h4 {
   color: var(--text-primary);
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
   font-size: 1.15rem;
-  font-family: var(--font-wiki);
+  font-weight: 700;
   border-bottom: 1px dashed var(--border-color);
-  padding-bottom: 4px;
+  padding-bottom: 6px;
 }
 
 .example-box {
-  background: rgba(47, 129, 247, 0.05);
+  background: rgba(59, 130, 246, 0.06);
   border-left: 3px solid var(--accent-blue);
-  padding: 12px 16px;
-  margin-top: 0.8rem;
+  padding: 14px 18px;
+  margin-top: 1rem;
   font-size: 0.95rem;
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   line-height: 1.6;
 }
 
-/* Optimización de Vocabulario en Grilla */
 .vocab-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 0.75rem;
-  margin-top: 0.8rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
   max-height: 500px;
   overflow-y: auto;
-  padding-right: 4px;
+  padding-right: 6px;
 }
 
 .vocab-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  padding: 10px 12px;
-  border-radius: 6px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
   word-break: break-word;
 }
 
@@ -643,7 +677,7 @@ main {
 }
 
 .vocab-phonetic {
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   color: var(--accent-amber);
   margin: 2px 0;
   font-family: monospace;
@@ -654,93 +688,67 @@ main {
   color: var(--text-secondary);
 }
 
-/* Sección Evaluador de Conocimientos */
-.quiz-selection-box {
-  background: rgba(255, 215, 0, 0.03);
-  border: 1px solid rgba(255, 215, 0, 0.2);
-  border-left: 3px solid var(--accent-gold);
-}
-
-.quiz-difficulty-buttons {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 10px;
-  margin-top: 1rem;
-}
-
-.btn-difficulty {
-  padding: 10px 14px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  border: 1px solid var(--border-color);
-  background: var(--bg-card);
-  color: var(--text-primary);
-  transition: all 0.2s ease;
-}
-
-.btn-difficulty.easy:hover { border-color: var(--accent-green); color: var(--accent-green); }
-.btn-difficulty.medium:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
-.btn-difficulty.hard:hover { border-color: var(--accent-amber); color: var(--accent-amber); }
-.btn-difficulty.impossible:hover { border-color: var(--accent-red); color: var(--accent-red); }
-
 /* ==========================================================================
    8. SECCIÓN FOROS
    ========================================================================== */
 .forum-actions {
   display: flex;
   gap: 12px;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .forum-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
 }
 
 .forum-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1.1rem;
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
   cursor: pointer;
   transition: all 0.25s ease;
 }
 
 .forum-card:hover {
   border-color: var(--accent-red);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .forum-messages-box {
   background: var(--bg-main);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
-  padding: 1rem;
-  height: 340px;
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  height: 380px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 1rem;
   margin: 1rem 0;
 }
 
 .message-item {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  padding: 10px 14px;
-  border-radius: 6px;
-  max-width: 90%;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  max-width: 85%;
   word-break: break-word;
 }
 
-.star-rating {
-  color: var(--accent-gold);
+.message-author {
   font-size: 0.8rem;
-  cursor: pointer;
-  margin-top: 4px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--text-secondary);
+}
+
+.message-author.admin-gold {
+  color: var(--accent-gold);
 }
 
 .active-forum-top {
@@ -752,222 +760,86 @@ main {
 
 .forum-input-box {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
-}
-
-/* Estilos de Insignias y Resaltados */
-.user-founder {
-  color: var(--accent-gold) !important;
-  font-weight: 700;
 }
 
 /* ==========================================================================
-   9. ASISTENTE DE IA - CHAT OPTIMIZADO
+   9. MARKETPLACE (TIENDA ORGANIZADA)
    ========================================================================== */
-.chat-header-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.25rem;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.chat-container {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.chat-messages-box {
-  background: var(--bg-main);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1.25rem;
-  height: 420px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  transition: background 0.3s;
-}
-
-.tab-content.mode-code .chat-messages-box {
-  background: #08140c;
-  border-color: rgba(35, 134, 54, 0.4);
-}
-
-.tab-content.mode-image .chat-messages-box {
-  background: #140811;
-  border-color: rgba(230, 57, 70, 0.4);
-}
-
-.chat-msg {
-  max-width: 85%;
-  padding: 10px 14px;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  word-break: break-word;
-}
-
-.chat-msg.user {
-  align-self: flex-end;
-  background: var(--accent-blue);
-  color: #ffffff;
-}
-
-.chat-msg.ai {
-  align-self: flex-start;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  color: var(--text-primary);
-}
-
-/* Entrada de Chat Espaciosa */
-.chat-input-box {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  padding: 8px 12px;
-  border-radius: 8px;
-  transition: border-color 0.2s;
-}
-
-.chat-input-box:focus-within {
-  border-color: var(--accent-blue);
-}
-
-.chat-input-box input[type="text"] {
-  flex: 1;
-  background: transparent;
-  border: none;
-  color: var(--text-primary);
-  font-size: 0.95rem;
-  outline: none;
-  padding: 8px 0;
-  width: 100%;
-}
-
-.chat-attachment-btn {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  color: var(--text-secondary);
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.chat-attachment-btn:hover {
-  color: var(--text-primary);
-  border-color: var(--accent-blue);
-}
-
-.code-block-container {
-  background: #0d1117;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  margin-top: 8px;
-  overflow: hidden;
-}
-
-.code-block-header {
-  background: var(--bg-card);
-  padding: 6px 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.75rem;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.code-panel-container {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  padding: 10px;
-}
-
-.code-panel-container textarea {
-  width: 100%;
-  background: var(--bg-main);
-  border: 1px solid var(--border-color);
-  color: #7ee787;
-  font-family: monospace;
-  padding: 8px;
-  border-radius: 4px;
-}
-
-/* ==========================================================================
-   10. ZONA DE JUEGOS Y TIENDA
-   ========================================================================== */
-.games-grid, .store-grid, .social-grid {
+.marketplace-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
   margin-top: 1rem;
 }
 
-.game-card, .store-card, .social-card {
-  position: relative;
+.marketplace-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: 10px;
-  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.2s, border-color 0.2s;
+  gap: 1rem;
+  transition: border-color 0.2s;
 }
 
-.game-card:hover, .store-card:hover, .social-card:hover {
-  border-color: var(--accent-blue);
+.marketplace-card:hover {
+  border-color: var(--accent-gold);
 }
 
-.store-icon {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-.badges-grid {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 0.5rem;
-}
-
-.badge-item {
-  background: rgba(255, 215, 0, 0.1);
-  border: 1px solid var(--accent-gold);
+.marketplace-badge {
+  display: inline-block;
+  background: rgba(251, 191, 36, 0.15);
   color: var(--accent-gold);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  font-size: 0.75rem;
+  font-weight: 700;
   padding: 4px 10px;
   border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  width: fit-content;
 }
 
 /* ==========================================================================
-   11. CONÓCENOS Y DISCORD
+   10. CONÓCENOS (MISIÓN Y VISIÓN ESTRUCTURADA)
    ========================================================================== */
-.about-card {
-  max-width: 700px;
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+}
+
+.about-card-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+}
+
+.about-card-item h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .discord-box {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  padding: 1.5rem;
-  border-radius: 8px;
+  padding: 1.75rem;
+  border-radius: var(--radius-md);
   margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .btn-discord {
@@ -977,8 +849,8 @@ main {
   background-color: #5865f2;
   color: #ffffff;
   text-decoration: none;
-  padding: 10px 18px;
-  border-radius: 6px;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
   font-size: 0.88rem;
   font-weight: 600;
   transition: background-color 0.2s;
@@ -989,13 +861,59 @@ main {
 }
 
 /* ==========================================================================
+   11. PERFIL DE USUARIO
+   ========================================================================== */
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.profile-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+}
+
+.profile-section h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.profile-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.profile-field label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
    12. ADAPTABILIDAD MÓVIL (MEDIA QUERIES)
    ========================================================================== */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
     align-items: stretch;
-    padding: 0.8rem 1rem;
+    padding: 1rem;
   }
 
   .user-stats {
@@ -1003,11 +921,11 @@ main {
   }
 
   main {
-    padding: 0.8rem;
+    padding: 1rem;
   }
 
   .tab-content {
-    padding: 1rem;
+    padding: 1.25rem;
   }
 
   .forum-actions {
@@ -1015,20 +933,13 @@ main {
     align-items: stretch;
   }
 
-  .chat-input-box {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .chat-msg {
-    max-width: 95%;
-  }
-
   .login-card {
     padding: 1.5rem;
   }
 
-  .level-buttons-grid, .quiz-difficulty-buttons {
+  .level-buttons-grid, 
+  .about-grid,
+  .profile-form-grid {
     grid-template-columns: 1fr;
   }
 
