@@ -2,12 +2,37 @@
 const GOOGLE_CLIENT_ID = '695556528337-katrqu8atnal1d2j9ud3t9jpjhajjhgb.apps.googleusercontent.com';
 var ADMIN_EMAIL = 'correadediego30@gmail.com';
 
+// GESTIÓN DEL FORO Y LOCALSTORAGE (INICIALIZACIÓN AL INICIO)
+let forums = [];
+try {
+    forums = JSON.parse(localStorage.getItem('nexus_forums')) || [];
+} catch (e) {
+    console.error('Error al cargar foros desde localStorage:', e);
+    forums = [];
+}
+
+if (forums.length === 0) {
+    forums = [
+        {
+            id: 'forum_1',
+            subject: 'Matemáticas',
+            title: 'Foro Oficial de Cálculo y Álgebra',
+            desc: 'Espacio para resolver dudas sobre derivadas e integrales.',
+            admin: 'AdminSuperNova',
+            adminEmail: ADMIN_EMAIL,
+            messages: [
+                { id: 1, author: 'AdminSuperNova', authorEmail: ADMIN_EMAIL, text: '¡Bienvenidos a SuperNova IA! Suban sus preguntas.', img: null }
+            ]
+        }
+    ];
+}
+
 // ESTADO GLOBAL
 let currentUser = localStorage.getItem('username') || '';
 let currentUserEmail = localStorage.getItem('user_email') || ADMIN_EMAIL;
 let currentForumId = null;
 let selectedImageBase64 = null;
-let currentEnglishLevel = 'B1'; // Nivel predeterminado actualizado a B1
+let currentEnglishLevel = 'B1';
 
 // ESTADO DEL CHAT IA
 let currentAIMode = 'conversational';
@@ -442,7 +467,7 @@ function handleSubjectChange(subject) {
     if (subject === 'english') {
         if (comingSoon) comingSoon.style.display = 'none';
         if (englishMod) englishMod.style.display = 'block';
-        selectEnglishLevel('B1'); // Habilitado el nivel B1 por defecto
+        selectEnglishLevel('B1');
     } else if (['biology', 'physics', 'chemistry', 'math'].includes(subject)) {
         if (englishMod) englishMod.style.display = 'none';
         if (comingSoon) comingSoon.style.display = 'block';
